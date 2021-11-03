@@ -7,7 +7,7 @@ namespace WordShortener
         private static readonly Regex regex;
         static Shortener()
         {
-            regex = new Regex("(\\w{3,})");
+            regex = new Regex("([A-Za-z]{2,})");
         }
         public static string ShortenParagraph(this string paragraph)
         {
