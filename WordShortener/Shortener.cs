@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace WordShortener
 {
@@ -16,7 +17,12 @@ namespace WordShortener
         }
         public static string ShortenWord(this string word)
         {
-            return regex.IsMatch(word) ? $"{word[0]}{word.Length-2}{word[^1]}" : word;
+            if (regex.IsMatch(word))
+            {
+                var grouped = word[1..^1].GroupBy(x => x);
+                return $"{word[0]}{grouped.Count()}{word[^1]}";
+            }
+            return word;
         }
 
     }
